@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.css';
-import './app.css';
-import styles from './styles.module.css';
+import { Router } from 'react-router';
 
+class App extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    routes: PropTypes.object.isRequired,
+  }
 
-class App extends React.Component {
+  get content() {
+    return (
+      <Router 
+        history={this.props.history}
+        routes={this.props.routes}
+      />
+    )
+  }
+
   render() {
     return (
-      <div className={styles.wrapper}>
-        <h1>
-          <i className="fa fa-heart"></i>
-          Environment: {__NODE_ENV__}
-        </h1>
+      <div style={{ height: '100%' }}>
+        {this.content}
       </div>
     );
   }
