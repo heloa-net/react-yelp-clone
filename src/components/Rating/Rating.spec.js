@@ -8,14 +8,6 @@ import styles from './styles.module.css';
 describe('<Rating />', () => {
 
   it('fills the percentage as style', () => {
-    let wrapper = shallow(<Rating percentage={0.10} />);
-    expect(wrapper.find(`${styles.top}`))
-      .to.have.style('width', '10%');
-    
-    wrapper = shallow(<Rating percentage={0.99} />);
-    expect(wrapper.find(`${styles.top}`))
-      .to.have.style('width', '99%');
-
     let rating = 4;
     wrapper = shallow(<Rating percentage={rating/5} />);
     expect(wrapper.find(`${styles.top}`))
