@@ -5,17 +5,22 @@ import classnames from 'classnames';
 import styles from './styles.module.css';
 
 class MapComponent extends Component {
-  // const {children} = this.props;
+  // renderChildren() {
+  //   const {children} = this.props;
+  // }
   renderMarkers() {
     if (!this.props.places) {
       return null; 
     }
     return this.props.places.map(place => {
-      return <Marker key={place.id}
-                     name={place.id}
-                     place={place}
-                     position={place.geometry.location}
-                  />
+      return (
+        <Marker key={place.id}
+            name={place.id}
+            onClick={this.props.onMarkerClick.bind(this)}
+            place={place}
+            position={place.geometry.location}
+        />
+      )
     })
   }
 
@@ -25,6 +30,7 @@ class MapComponent extends Component {
         className={styles.map}
         google={this.props.google}
       >
+
         {this.renderMarkers()}
       </Map>
     )
